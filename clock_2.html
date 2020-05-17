@@ -142,6 +142,10 @@ select {
                 <span id="seconds">00</span>
                 <span>Seconds</span>
             </div>
+            <!-- <div>
+                <span id="session">00</span>
+                <span>12-Hours</span>
+            </div> -->
         </div>
     </div>
     <script type="text/javascript">
@@ -151,14 +155,14 @@ select {
             var h = date.getHours();//0-23
             var m = date.getMinutes();//0-59
             var s = date.getSeconds();//0-59
-            var session = "AM";
-            if (h == 0) {
-                h = 12;
-            }
-            if (h > 12) {
-                h = h - 12;
-                session = "PM"
-            }
+            // var session = "AM";
+            // if (h == 0) {
+            //     h = 12;
+            // }
+            // if (h > 12 ) {
+            //     h = h - 12;
+            //     session = "PM"
+            // }
             if (h < 10) {
                 h = "0" + h;
             }
@@ -168,10 +172,11 @@ select {
             if (s < 10) {
                 s = "0" + s;
             }
-            var time = h + ":" + m + ":" + s + " " + session;
+            // var time = h + ":" + m + ":" + s + " " + session;
             document.getElementById("hour").innerText = h;
             document.getElementById("minutes").innerText = m;
             document.getElementById("seconds").innerText = s;
+            // document.getElementById("session").innerText = session;
             // document.getElementById("MyClockDisplay").innerText = time;
             // document.getElementById("MyClockDisplay").textContent = time;
             setTimeout(showTime, 1000);
@@ -527,7 +532,8 @@ select {
         function timezones() {
             var x = document.getElementById("timezone");
             var option = document.createElement("option");
-            TimeZones.forEach(zone => {
+
+            TimeZones.sort().forEach(zone => {
                 var newSelect = document.createElement('option');
                 newSelect.innerHTML = "<option value='" + zone + "'>" + zone + "</option>";
                 x.add(newSelect);
